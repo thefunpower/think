@@ -1,0 +1,30 @@
+{
+    "name": "thefunpower/think",
+    "type": "library",
+    "description": "",
+    "keywords": ["php"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ken.sun",
+            "email": "yiiphp@foxmail.com" 
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "alchemy/zippy": "^1.0",
+        "guzzlehttp/guzzle": "^7.3",
+        "phpseclib/phpseclib": "^2.0",
+        "symfony/yaml": "^5.3", 
+        "symfony/mailer": "^5.4",   
+        "voku/anti-xss": "^4.1" 
+    }, 
+    "autoload": { 
+        "files": [ 
+            "./helper.php"
+        ],
+        "psr-4": {
+            "lib\\": "./lib/"
+        }
+    }
+}
