@@ -12,6 +12,19 @@ function get_remote_file($url,$is_json = false){
     return $res;
 }
 /**
+* 下载文件
+*/
+function download_file($url){
+    $host = cdn_url();
+    if(strpos($url,"://") !== false){
+        $url = download_remote_file($url);
+        $url = str_replace($host,'',$url);
+    }else if(substr($url,0,1) == '/'){
+        $url = str_replace(WWW_PATH,'',$url); 
+    }
+    return $url;
+}
+/**
 * 下载远程文件
 */
 function download_remote_file($url,$path='',$name = ''){
