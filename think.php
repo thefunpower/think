@@ -17,9 +17,9 @@ function get_remote_file($url,$is_json = false){
 function download_remote_file($url,$path='',$name = ''){
     $name = $name?:'/uploads/tmp/'.md5($url).'.'.get_ext($url);
     $path = $path?:WWW_PATH;
-    $file = $path.$name; 
-    $context = get_remote_file($url);
-    if(!file_exists($file)){  
+    $file = $path.$name;  
+    if(!file_exists($file)){ 
+        $context = get_remote_file($url);
         $dir = get_dir($file); 
         if(!is_dir($dir)){
             mkdir($dir,0777,true);
