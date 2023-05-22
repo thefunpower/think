@@ -14,15 +14,22 @@ function get_remote_file($url,$is_json = false){
 /**
 * 下载文件
 */
-function download_file($url){
+function download_file($url,$contain_http = false){
     $host = cdn_url();
     if(strpos($url,"://") !== false){
         $url = download_remote_file($url);
+        if($contain_http){
+            return $url;
+        }
         $url = str_replace($host,'',$url);
-    }else if(substr($url,0,1) == '/'){
-        $url = str_replace(WWW_PATH,'',$url); 
-    }
-    return $url;
+    }else if(strpos($url,WWW_PATH)!==false){
+        $url = str_replace(WWW_PATH,'',$url);  
+    } 
+    if($contain_http){
+        return $host.$url;
+    }else{
+        return $url;    
+    }    
 }
 /**
 * 下载远程文件
