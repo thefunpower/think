@@ -1,9 +1,11 @@
 <?php 
 
-
-function t_file_put($url,$path='',$name = ''){
-	$name = $name?:'/uploads/tmp/'.md5($url).'.'.get_ext($url);
-	$path = $path?:WWW_PATH;
+/**
+* 下载远程文件
+*/
+function download_remote_file($url,$path='',$name = ''){
+    $name = $name?:'/uploads/tmp/'.md5($url).'.'.get_ext($url);
+    $path = $path?:WWW_PATH;
     $file = $path.$name; 
     $client = guzzle_http();
     $res    = $client->request('GET', $url);
