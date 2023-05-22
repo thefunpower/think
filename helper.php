@@ -4,6 +4,7 @@
 * MIT LICENSE
 */ 
 include __DIR__.'/request.php';
+include __DIR__.'/think.php'; 
 /**
  * 尝试多次运行
  * $times 运行次数
