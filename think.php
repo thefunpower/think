@@ -35,7 +35,7 @@ function download_file($url,$contain_http = false){
 * 下载远程文件
 */
 function download_remote_file($url,$path='',$name = ''){
-    $name = $name?:'/uploads/tmp/'.md5($url).'.'.get_ext($url);
+    $name = $name?:'/uploads/tmp/'.date("Y-m-d").'/'.md5($url).'.'.get_ext($url);
     $path = $path?:WWW_PATH;
     $file = $path.$name;  
     if(!file_exists($file)){ 
