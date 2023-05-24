@@ -508,6 +508,7 @@ if(!function_exists('yaml')){
 if(!function_exists('aes_encode')){
 	function aes_encode($data, $key = '', $iv = '', $type = 'AES-128-CBC', $options = '')
 	{    
+		if(is_array($data)){$data = json_encode($data);}
 	    $obj = new \lib\Aes($key, $iv, $type, $options);
 	    return base64_encode($obj->encrypt($data));
 	}
@@ -520,7 +521,12 @@ if(!function_exists('aes_decode')){
 	{
 	    $data = base64_decode($data);
 	    $obj = new \lib\Aes($key, $iv, $type, $options);
-	    return $obj->decrypt($data);
+	    $data = $obj->decrypt($data);
+	    if(is_json($data)){
+	    	return json_decode($data,true);
+	    }else{
+	    	return $data;
+	    }
 	}
 }
 
