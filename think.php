@@ -1,5 +1,16 @@
 <?php 
 /**
+* 返回URL路径，不含有域名部分
+*/
+function get_url_remove_http($url){
+    if(strpos($url,'://')===false){
+        return $url;
+    }
+    $url = substr($url,strpos($url,'://')+3);
+    $url = substr($url,strpos($url,'/'));
+    return $url;
+}
+/**
 * 取后缀
 */
 function get_ext_by_url($url){
