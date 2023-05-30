@@ -68,9 +68,13 @@ function download_file($url,$contain_http = false){
 }
 /**
 * 下载远程文件
+* global $remote_to_local_path;
+* $remote_to_local_path = '/uploads/saved/'.date("Y-m-d");
 */
 function download_remote_file($url,$path='',$name = ''){
-    $name = $name?:'/uploads/tmp/'.date("Y-m-d").'/'.md5($url).'.'.get_ext_by_url($url);
+    global $remote_to_local_path;
+    $remote_to_local_path = $remote_to_local_path?:'/uploads/tmp/'.date("Y-m-d");
+    $name = $name?:$remote_to_local_path.'/'.md5($url).'.'.get_ext_by_url($url);
     $path = $path?:WWW_PATH;
     $file = $path.$name;  
     if(!file_exists($file)){ 
