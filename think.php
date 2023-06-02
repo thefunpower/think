@@ -6,9 +6,18 @@
 /**
 * 设置允许字段
 */
-function data_allow($collect,$field){
+function set_field_allow($collect,$field){
 	global $_data_allow;
 	$_data_allow[$collect] = $field;
+}
+/**
+* 获取允许字段
+*/
+function set_field_allow($collect){
+	global $_data_allow;
+	$d = $_data_allow[$collect];
+	$d[] = 'id';
+	return $d;
 }
 /**
 *返回允许字段值
