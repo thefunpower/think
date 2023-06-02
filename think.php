@@ -19,7 +19,7 @@ function get_data_allow($collect,$input)
 	 $new_input;
 	 $field = $_data_allow[$collect];
 	 foreach($input as $k=>$v){
-	 	if(in_array($k,$field)){
+	 	if($k == 'id' || in_array($k,$field)){
 	 		$new_input[$k] = $v;
 	 	}
 	 }
