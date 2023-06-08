@@ -117,6 +117,7 @@ if(!function_exists("do_action")){
         if (!is_array($_app)) {
             return;
         }
+        if(!isset($_app['actions'][$name])){return;}
         $calls  = $_app['actions'][$name]; 
         $calls  = lib\Arr::order_by($calls,'level',SORT_DESC);  
         if ($calls) {
