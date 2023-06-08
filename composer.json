@@ -17,7 +17,8 @@
         "phpseclib/phpseclib": "^2.0",
         "symfony/yaml": "^5.3", 
         "symfony/mailer": "^5.4",   
-        "voku/anti-xss": "^4.1" 
+        "voku/anti-xss": "^4.1",
+        "topthink/think-queue": "^3" 
     }, 
     "autoload": { 
         "files": [ 

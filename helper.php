@@ -861,3 +861,11 @@ if(!function_exists('echats')){
 	}
 }
 
+/**
+* 添加到队列
+* push_task('app\printer\job\Printer',['tt'=>11],'');
+*/
+function push_task($job, $data = '', $queue = ''){
+    think\facade\Queue::push($job, $data , $queue );
+}
+
