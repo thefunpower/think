@@ -430,6 +430,7 @@ if(!function_exists('json_error')){
 	{
 	    $arr['code'] = $arr['code'] ?: 250;
 	    $arr['type'] = $arr['type'] ?: 'error';
+	    $arr['time'] = now();
 	    if($is_array){
 	        return $arr;
 	    }
@@ -446,6 +447,7 @@ if(!function_exists('json_success')){
 	{
 	    $arr['code'] = $arr['code'] ?: 0;
 	    $arr['type'] = $arr['type'] ?: 'success';
+	    $arr['time'] = now();
 	    if($is_array){
 	        return $arr;
 	    }
