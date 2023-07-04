@@ -44,11 +44,11 @@ class Time
 	/**
 	 * 最近30天
 	 */
-	public static function date($day = 30)
+	public static function date($day = 30, $separate = "")
 	{
 		$arr = [];
 		for ($i = 0; $i < $day; $i++) {
-			$arr[] = date("Y-m-d", strtotime('-' . $i . ' days'));
+			$arr[] = date("Y" . $separate . "m" . $separate . "d", strtotime('-' . $i . ' days'));
 		}
 		$arr = array_reverse($arr);
 		return $arr;
