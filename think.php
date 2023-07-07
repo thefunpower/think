@@ -46,21 +46,16 @@ function get_loop_tree_ids($table,$id,$where=[],$get_field = 'id'){
   return $all;
 }
 /**
-* loop_tree_deep内部实现
+* 递归删除
 */
-function _loop_tree_deep_inner($all,$get_field,$is_frist = false){
-  static $_data;
-  if($is_frist){
-    $_data = [];
-  }
-  foreach($all as $v){ 
-      $_data[] = $v[$get_field];
-      if($v['children']){
-        _loop_tree_deep_inner($v['children'],$get_field);
-      }
-  }
-  return $_data;
-}
+function loop_del($table,$id,$where = []){ 
+    $catalog = db_get($table,$where);  
+    $all = array_to_tree($catalog,$pk = 'id', $pid = 'pid', $child = 'children', $id);
+    $where['id'] = $id;
+    $cur = db_get($table,$where,1);  
+    db_del($table,['id'=>$id]); 
+    _loop_del_tree($table,$all);
+} 
 /**
 * 用于tree表格排序
 * 因为tree给的lists字段是用于显示，在排序时得到的index是不正确的，
@@ -109,3 +104,34 @@ function el_cascader($select,$label='title',$value='id'){
   }
   return $_array_tree_key_change_data;
 } 
+
+/**
+* 以下代码不建议直接调用
+*/
+/**
+* 内部实现
+*/
+function _loop_del_tree($table,$all){
+    foreach($all as $v){
+      db_del($table,['id'=>$v['id']]);
+      if($v['children']){
+        _loop_del_tree($table,$v['children']);
+      } 
+    }
+}
+/**
+* 内部实现
+*/
+function _loop_tree_deep_inner($all,$get_field,$is_frist = false){
+  static $_data;
+  if($is_frist){
+    $_data = [];
+  }
+  foreach($all as $v){ 
+      $_data[] = $v[$get_field];
+      if($v['children']){
+        _loop_tree_deep_inner($v['children'],$get_field);
+      }
+  }
+  return $_data;
+}
