@@ -885,12 +885,12 @@ function get_field_allow($collect){
 function get_data_allow($collect,$input)
 {
 	 global $_data_allow;
-	 $new_input;
+	 $new_input = [];
 	 $field = $_data_allow[$collect];
 	 foreach($input as $k=>$v){
 	 	if($k == 'id' || in_array($k,$field)){
 	 		$new_input[$k] = $v;
 	 	}
 	 }
-	 return $new_input;
+	 return $new_input?:[];
 }
