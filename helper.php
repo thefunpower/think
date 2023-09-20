@@ -586,13 +586,21 @@ if(!function_exists('string_to_array')){
  * @return void
  */
 if(!function_exists('get_dates')){
-	function get_dates($start, $end)
+	function get_dates($start, $end,$contain_last = true)
 	{
 	    $dt_start = strtotime($start);
 	    $dt_end   = strtotime($end);
+	    $list = [];
 	    while ($dt_start <= $dt_end) {
 	        $list[] = date('Y-m-d', $dt_start);
 	        $dt_start = strtotime('+1 day', $dt_start);
+	    }
+	    if($list && !$contain_last){
+	    	unset($list[count($list)-1]);
+	    	if($list){
+	    		$list = array_values($list);
+	    	}
+	    	return $list;
 	    }
 	    return $list;
 	}
