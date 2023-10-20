@@ -902,3 +902,13 @@ function get_data_allow($collect,$input)
 	 }
 	 return $new_input?:[];
 }
+
+/**
+* 判断是否是ssl
+*/
+if(!function_exists("is_ssl")){
+    function is_ssl(){
+        global $config;
+        return  strpos($config['host'],'https://') !== false ?true:false;
+    }
+}
