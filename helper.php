@@ -912,3 +912,22 @@ if(!function_exists("is_ssl")){
         return  strpos($config['host'],'https://') !== false ?true:false;
     }
 }
+
+/**
+ * 设置、获取cookie 
+ */
+if(!function_exists('cookie') && function_exists('xcookie')){
+    function cookie($name, $value = NULL, $expire = 0)
+    {
+        return xcookie($name, $value, $expire);
+    }
+}
+/**
+ * 删除COOKIE 
+ */ 
+if(!function_exists('cookie_delete') && function_exists('xcookie_delete')){
+    function cookie_delete($name)
+    {
+        return xcookie_delete($name);
+    }
+}
