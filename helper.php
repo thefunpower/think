@@ -931,3 +931,59 @@ if(!function_exists('cookie_delete') && function_exists('xcookie_delete')){
         return xcookie_delete($name);
     }
 }
+
+
+/**
+ * 验证数据
+ * https://github.com/vlucas/valitron
+ * 
+ * 事例代码
+ * 
+	$data    = g();   
+	$vali    = validate([
+	    'company_title'   => '客户名',
+	    'email'   => '邮件地址',
+	    'active_plugins'  => '系统',
+	    'exp_time' => '过期时间',
+	],$data,[
+	    'required' => [
+	        ['company_title'],
+	        ['email'],
+	        ['active_plugins'],
+	        ['exp_time'],
+	    ],
+	    'email'=>[
+	        ['email']
+	    ]
+	]);
+	if($vali){
+	    json($vali);
+	} 
+ */
+if(!function_exists('think_validate')){
+	function think_validate($labels, $data, $rules, $show_array = false)
+    {
+        $v = new \lib\Validate($data);
+        $v->rules($rules);
+        $v->labels($labels);
+        $v->validate();
+        $error = $v->errors();
+        if ($error) {
+            if (!$show_array) {
+                foreach ($error as $k => $v) {
+                    $error = $v[0];
+                    break;
+                }
+            }
+            return ['code' => 250, 'msg' => $error, 'type' => 'error','key'=>$k];
+        } else {
+            return;
+        }
+    }
+} 
+if(!function_exists('validate') && !class_exists('think\App')){
+    function validate($labels, $data, $rules, $show_array = false)
+    {
+        return think_validate($labels, $data, $rules, $show_array);
+    }
+}

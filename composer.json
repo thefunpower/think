@@ -18,7 +18,8 @@
         "symfony/yaml": "^5.3 || ^6.2 || ^6.3", 
         "symfony/mailer": "^5.4",   
         "voku/anti-xss": "^4.1",
-        "endroid/qr-code": "^4.8" 
+        "endroid/qr-code": "^4.8",
+        "vlucas/valitron": "^1.4" 
     }, 
     "autoload": { 
         "files": [ 
