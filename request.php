@@ -82,8 +82,8 @@ if (!function_exists('get')) {
 /**
  * 取POST值
  */
-if (!function_exists('get_post')) {
-    function get_post($key = "")
+if (!function_exists('get_req_post')) {
+    function get_req_post($key = "")
     {
         $input = get_input();
         $data  = $_POST;
@@ -102,7 +102,7 @@ if (!function_exists('get_post')) {
 if (!function_exists('g')) {
     function g($key = null)
     {
-        $val = get_post($key);
+        $val = get_req_post($key);
         if (!$val) {
             $val = $key?$_GET[$key]:$_GET;
         }
