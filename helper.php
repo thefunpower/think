@@ -422,6 +422,14 @@ if(!function_exists('price_format')){
 	} 
 } 
 
+if(!function_exists('json')){
+	function json($arr = [])
+	{
+		header('content-type:application/json'); 
+	    echo json_encode($arr,JSON_UNESCAPED_UNICODE);
+	    exit;
+	}
+}
 /**
  * 返回错误信息，JSON格式 
  */
