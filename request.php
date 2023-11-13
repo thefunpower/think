@@ -64,7 +64,8 @@ if (!function_exists('global_trim')) {
             }
         }
     }
-    global_trim();
+    global_trim(); 
+    $_POST = xss_clean($_POST); 
 }
 /**
  * 取GET
