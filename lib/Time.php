@@ -1,13 +1,5 @@
 <?php
-
-/*
-* Copyright (c) 2021-2031, All rights reserved.
-* MIT LICENSE
-*/ 
-
-
-namespace lib;
- 
+namespace lib; 
 
 class Time
 {

@@ -1,8 +1,4 @@
 <?php 
-/*
-* Copyright (c) 2021-2031, All rights reserved.
-* MIT LICENSE
-*/ 
 /**
 * 添加到队列
 * "topthink/think-queue": "^3" 
