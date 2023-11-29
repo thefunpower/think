@@ -3,4 +3,4 @@
 
 ### 开源协议 
 
-The [MIT](LICENSE) License (MIT)
+[Apache License 2.0](LICENSE)
