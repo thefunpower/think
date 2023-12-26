@@ -1023,3 +1023,14 @@ if(!function_exists('validate') && !class_exists('think\App')){
         return think_validate($labels, $data, $rules, $show_array);
     }
 }
+
+
+if(!function_exists('jump')){
+	function jump($url){
+		if (strpos($url, '://') === false && substr($url, 0, 1) != '/') {
+	        $url = '/'.$url;
+	    } 
+	    header("Location: " . $url);
+	    exit;
+	}
+}
