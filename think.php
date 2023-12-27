@@ -32,7 +32,7 @@ function get_api_data($title, $name)
  */
 function api_data_insert($data = [])
 {
-    $data = db_allow($data);
+    $data = db_allow("api_data", $data);
     $data['created_at'] = now();
     db_insert("api_data", $data);
 }
