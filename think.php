@@ -1,5 +1,30 @@
 <?php 
-
+/**
+* 对数组添加cdn url
+*/
+function set_url_use_cdn(&$row,$field = []){
+    foreach ($field as $k){
+        $v = $row[$k];
+        if($v){
+            if(is_array($v)){
+                $new_v = [];
+                foreach($v as $vv){
+                    if(strpos($vv,'://') === false ){
+                        $new_v[] = cdn_url().$vv;        
+                    } else{
+                        $new_v[] = $vv;
+                    } 
+                }
+                 $row[$k] = $new_v;   
+            }else {
+                if(strpos($v,'://') === false){
+                    $row[$k] = cdn_url().$v;        
+                }
+            }
+            
+        }
+    }
+}
 /**
  * 消息模板
  */
