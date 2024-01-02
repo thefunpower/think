@@ -27,21 +27,23 @@ function set_url_use_cdn(&$row,$field = []){
 }
 /**
  * 消息模板
- */
-function get_template($name, $replace_arr = [])
-{
-    $file = PATH . '/template/' . $name . '.php';
-    if(!file_exists($file)) {
-        throw new Exception("模板文件不存在");
+ */ 
+if(!function_exists('get_template')){
+    function get_template($name, $replace_arr = [])
+    {
+        $file = PATH . '/template/' . $name . '.php';
+        if(!file_exists($file)) {
+            throw new Exception("模板文件不存在");
+        }
+        ob_start();
+        include $file;
+        $content = ob_get_contents();
+        ob_end_clean();
+        foreach($replace_arr as $k => $v) {
+            $content = str_replace("{" . $k . "}", $v, $content);
+        }
+        return $content;
     }
-    ob_start();
-    include $file;
-    $content = ob_get_contents();
-    ob_end_clean();
-    foreach($replace_arr as $k => $v) {
-        $content = str_replace("{" . $k . "}", $v, $content);
-    }
-    return $content;
 }
 
 /**
