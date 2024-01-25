@@ -87,7 +87,7 @@ function push_task($job, $data = '', $queue = '')
 * 2  1
 * 3  2
 */
-function loop_tree($table, $id, $is_frist = false)
+function loop_tree($table, $id, $is_frist = true)
 {
     static $_data;
     if($is_frist) {
@@ -96,7 +96,7 @@ function loop_tree($table, $id, $is_frist = false)
     $end = db_get($table, ['id' => $id], 1);
     $_data[] = $end;
     if($end['pid'] > 0) {
-        loop_tree($table, $end['pid']);
+        loop_tree($table, $end['pid'],false);
     }
     return array_reverse($_data);
 }
