@@ -44,7 +44,7 @@ function api_data_insert($data = [])
  * 设置、获取cookie 
  */
 if(!function_exists('cookie') && function_exists('xcookie')){
-    function cookie($name, $value = NULL, $expire = 0)
+    function cookie($name, $value = '', $expire = 0)
     {
         return xcookie($name, $value, $expire);
     }
