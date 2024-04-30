@@ -52,7 +52,26 @@ class Time
         $secs = $remain % 60;
         return ["d" => $days, "h" => $hours, "m" => $mins, "s" => $secs];
     }
-
+    /**
+    * 秒转成相应时间显示
+    */
+    public static function sec_to_time($sec){
+        $t = self::less_time($sec);
+        $time = '';
+        if($t['d']){
+            $time.=$t['d']."天";
+        }
+        if($t['h']){
+            $time.=$t['d']."时";
+        }
+        if($t['m']){
+            $time.=$t['m']."分";
+        }
+        if($t['s']){
+            $time.=$t['s']."秒";
+        } 
+        return $time;
+    }
     /**
      * 最近30天
      */
