@@ -53,7 +53,7 @@ class Map
         $res = self::get_request($url);
         $res = json_decode($res, true);
         if ($full === false) {
-            return ['data' => $res['result']['address']];
+            return ['data' => $res['result']['formatted_addresses']['standard_address'] ?: $res['result']['address']];
         }
         return $res;
     }
