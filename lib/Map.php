@@ -8,7 +8,8 @@ bd_map_key
 
 class Map
 {
-
+    // 支持在使用tx取坐标时使用天地图 tianditu 
+    public static $use = '';
     public static function get_request($url)
     {
         $context = stream_context_create(array(
@@ -22,11 +23,16 @@ class Map
     /**
      * 腾讯地图
      * https://lbs.qq.com/dev/console/key/setting
-     * @param  [type] $address [description]
-     * @return [type]          [description]
+     * 改用天地图，可全局配置。避免使用收费地图
+     * \lib\Map::$use = 'tianditu'; 
+     * @param  [type] $address  
+     * @return [type]           
      */
     public static function tx($address, $lat = true)
     {
+        if(self::$use == 'tianditu'){
+            return \helper_v3\Map::get_lat($address);
+        }
         $key     = get_config('tx_map_key');
         $address = urlencode($address);
         $url = "https://apis.map.qq.com/ws/geocoder/v1/?address=" . $address . "&key=" . $key;
