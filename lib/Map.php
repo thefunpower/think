@@ -8,8 +8,6 @@ bd_map_key
 
 class Map
 {
-    // 支持在使用tx取坐标时使用天地图 tianditu 
-    public static $use = '';
     public static function get_request($url)
     {
         $context = stream_context_create(array(
@@ -30,9 +28,6 @@ class Map
      */
     public static function tx($address, $lat = true)
     {
-        if(self::$use == 'tianditu'){
-            return \helper_v3\Map::get_lat($address);
-        }
         $key     = get_config('tx_map_key');
         $address = urlencode($address);
         $url = "https://apis.map.qq.com/ws/geocoder/v1/?address=" . $address . "&key=" . $key;
@@ -53,7 +48,7 @@ class Map
      * @return [type]        [description]
      */
     public static function tx_lat($lat, $lng, $full = false)
-    {
+    {       
         $key     = get_config('tx_map_key');
         $url = "https://apis.map.qq.com/ws/geocoder/v1/?location=" . $lat . ',' . $lng . "&key=" . $key;
         $res = self::get_request($url);
@@ -70,7 +65,7 @@ class Map
      * @return [type]             [description]
      */
     public static function gaode($address, $show_full = false)
-    {
+    { 
         $key     = get_config('gd_map_key');
         $address = urlencode($address);
         $url = 'https://restapi.amap.com/v3/geocode/geo?address=' . $address . '&output=json&key=' . $key;
