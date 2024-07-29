@@ -19,7 +19,7 @@ class Aes
     protected $iv;
 
     /**
-     * var string $options （不知道怎么解释，目前设置为0没什么问题）
+     * var string $options OPENSSL_RAW_DATA=1 OPENSSL_ZERO_PADDING=2
      */
     protected $options;
 
