@@ -29,7 +29,7 @@ class Aes
      * @param string $key 密钥
      * @param string $method 加密方式
      * @param string $iv iv向量
-     * @param mixed $options 还不是很清楚
+     * @param mixed $options   OPENSSL_RAW_DATA=1 OPENSSL_ZERO_PADDING=2
      *
      */
     public function __construct($key,  $iv = '', $method = 'AES-128-CBC', $options = '')
